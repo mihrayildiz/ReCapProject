@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class InMemoryBrandDal : IBrandDal
+public class EfBrandDal : IBrandDal
 {
 
 

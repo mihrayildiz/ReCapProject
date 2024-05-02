@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework;
 
-public class InMemoryColorDal : IColorDal
+public class EfColorDal : IColorDal
 {
     public void Add(Color entity)
     {
