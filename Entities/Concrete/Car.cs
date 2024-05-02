@@ -1,4 +1,5 @@
-﻿using Entities.Abstract;
+﻿
+using Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,4 +17,5 @@ public class Car : IEntity
     public int ModelYear { get; set; }
     public int DailyPrice { get; set; }
     public string Description { get; set; }
+   
 }

@@ -25,7 +25,27 @@ public class CarManager : ICarService
 
     public Car GetById(int id)
     {
-        Car car = _cardal.GetById(id);
-        return car;
+        return _cardal.Get(p =>p.Id == id);
     }
+
+    public List<Car> GetCarsByBrandId(int brandID)
+    {
+        return _cardal.GetAll(c => c.BrandId == brandID);
+    }
+
+    public List<Car> GetCarsByColorId(int colorId)
+    {
+        return _cardal.GetAll(c => c.ColorId == colorId);   
+    }
+
+
+
+
+
+    //InMemory
+    //public Car GetById(int id)
+    //{
+    //    Car car = _cardal.GetById(id);
+    //    return car;
+    //}
 }
