@@ -38,14 +38,51 @@ public class CarManager : ICarService
         return _cardal.GetAll(c => c.ColorId == colorId);   
     }
 
+    public void NameMinTwoCharacters(Car car)
+    {
+        if (car.Description.Length >= 2) 
+        {
+            _cardal.Add(car);
+            Console.WriteLine("Yeni Car Eklendi.");
 
+        }
+        else
+        {
+            Console.WriteLine("Car description min iki karakter olmalıdır.");
+           
+           
+        }
+       // return;
+    }
 
+    public void DailyPriceBigZero(Car car)
+    {
+        if (car.DailyPrice >0)
+        {
+            _cardal.Add(car);
+            Console.WriteLine("Yeni Car Eklendi.");
 
+        }
+        else
+        {
+            Console.WriteLine("Car DailyPrice 0'dan büyük  olmalıdır.");
+           
 
-    //InMemory
-    //public Car GetById(int id)
-    //{
-    //    Car car = _cardal.GetById(id);
-    //    return car;
-    //}
+        }
+        //return;
+    }
 }
+
+
+//   if (car.Description.Length >= 2 && car.DailyPrice >0) 
+// {
+//            _cardal.Add(car);
+//            Console.WriteLine("Yeni Car Eklendi.");
+
+//        }
+//        else
+//{
+//    Console.WriteLine("Car DailyPrice 0'dan büyük ve   description min iki karakter olmalıdır.");
+
+
+//}

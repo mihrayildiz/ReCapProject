@@ -42,3 +42,20 @@ foreach (var car in carManager.GetCarsByColorId(1))
 {
     Console.WriteLine( car.ColorId + " " +   car.Description);
 }
+
+
+Console.WriteLine("\n NameMinTwoCharacters : ");
+
+carManager.NameMinTwoCharacters(new Car
+{
+Description = "TOYOTA COROLLA"
+});
+
+
+Console.WriteLine("\n DailyPriceBigZero : ");
+
+carManager.DailyPriceBigZero(new Car
+{
+    DailyPrice = 1500,
+    Description = "AUDI A6"
+}) ;

@@ -18,6 +18,10 @@ public interface ICarService
 
     List<Car> GetCarsByColorId(int colorId);
 
+    void NameMinTwoCharacters(Car car);
+
+    void DailyPriceBigZero(Car car);
+
 
 
 }
