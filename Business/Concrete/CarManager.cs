@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,11 @@ public class CarManager : ICarService
        
 
         
+    }
+
+    public List<CarDetailDto> GetCarDetails()
+    {
+       return  _cardal.GetCarDetails();
     }
 }
 

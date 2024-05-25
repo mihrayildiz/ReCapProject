@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,7 @@ public interface ICarService
     void GetDeleteById (int id);
 
     void GetUpdateById(Car car);
+
+    List<CarDetailDto> GetCarDetails();
 
 }

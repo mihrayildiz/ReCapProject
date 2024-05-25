@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 Console.WriteLine("Hello, World!");
 
-CarTest();
+//CarTest();
 
 static void CarTest()
 {
@@ -58,7 +58,7 @@ static void CarTest()
     });
 
 
-    //Console.WriteLine("\n Delete : ");
+    Console.WriteLine("\n Delete : ");
     //carManager.GetDeleteById(2013);
     
     
@@ -72,4 +72,9 @@ static void CarTest()
     });
 }
 
-
+CarManager carManager = new CarManager(new EfCarDal());
+Console.WriteLine("\n Car detail : ");
+foreach (var car in carManager.GetCarDetails())
+{
+    Console.WriteLine(car.CarName+ " " + car.ColorName + " " + car.BrandName);
+}
