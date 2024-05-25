@@ -71,18 +71,30 @@ public class CarManager : ICarService
         }
         //return;
     }
+
+    public void GetDeleteById(int id)
+    {
+
+        var deletedItem = _cardal.Get( c => c.Id == id);
+        _cardal.Delete(deletedItem);
+
+    }
+
+    public void GetUpdateById(Car car)
+    {
+        var updatedItem = _cardal.Get(c =>c.Id == car.Id);
+
+        updatedItem.DailyPrice = car.DailyPrice;
+        updatedItem.ColorId = car.ColorId;
+        updatedItem.Description = car.Description;
+        updatedItem.ModelYear = car.ModelYear;
+        updatedItem.BrandId = car.BrandId;
+        _cardal.Update(updatedItem);
+       
+
+        
+    }
 }
 
 
-//   if (car.Description.Length >= 2 && car.DailyPrice >0) 
-// {
-//            _cardal.Add(car);
-//            Console.WriteLine("Yeni Car Eklendi.");
 
-//        }
-//        else
-//{
-//    Console.WriteLine("Car DailyPrice 0'dan büyük ve   description min iki karakter olmalıdır.");
-
-
-//}

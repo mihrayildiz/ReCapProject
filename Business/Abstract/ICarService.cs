@@ -22,6 +22,8 @@ public interface ICarService
 
     void DailyPriceBigZero(Car car);
 
+    void GetDeleteById (int id);
 
+    void GetUpdateById(Car car);
 
 }

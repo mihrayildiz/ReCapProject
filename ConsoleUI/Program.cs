@@ -7,55 +7,69 @@ using System.Collections.Generic;
 
 Console.WriteLine("Hello, World!");
 
+CarTest();
 
-CarManager carManager = new CarManager(new EfCarDal());
-
-foreach (var car in carManager.GetAll())
+static void CarTest()
 {
-    Console.WriteLine(car.Description);
+    CarManager carManager = new CarManager(new EfCarDal());
+
+    foreach (var car in carManager.GetAll())
+    {
+        Console.WriteLine(car.Description);
+    }
+
+
+
+    Console.WriteLine("\n GetById :");
+    Car carById = carManager.GetById(2);
+
+    Console.WriteLine(carById.Description);
+
+
+    Console.WriteLine("\n GetCarsByBrandId : ");
+    foreach (var car in carManager.GetCarsByBrandId(1))
+    {
+        Console.WriteLine(car.BrandId + " " + car.Description);
+    }
+
+
+
+    Console.WriteLine("\n GetCarsByColorId : ");
+    foreach (var car in carManager.GetCarsByColorId(1))
+    {
+        Console.WriteLine(car.ColorId + " " + car.Description);
+    }
+
+
+    Console.WriteLine("\n NameMinTwoCharacters : ");
+
+    carManager.NameMinTwoCharacters(new Car
+    {
+        Description = "MERCEDES CLA200"
+    });
+
+
+    Console.WriteLine("\n DailyPriceBigZero : ");
+
+    carManager.DailyPriceBigZero(new Car
+    {
+        DailyPrice = 1800,
+        Description = "MERCEDES CLA200"
+    });
+
+
+    //Console.WriteLine("\n Delete : ");
+    //carManager.GetDeleteById(2013);
+    
+    
+    Console.WriteLine("\n Update : ");
+    carManager.GetUpdateById(new Car
+    {
+        Id = 2019,
+        DailyPrice = 2000,
+        Description = "AUDI A6"
+
+    });
 }
 
 
-
-Console.WriteLine("\n GetById :");
-Car carById = carManager.GetById(2);
-
-Console.WriteLine(carById.Description);
-
-
-
-
-
-
-
-
-Console.WriteLine("\n GetCarsByBrandId : ");
-foreach (var car in carManager.GetCarsByBrandId(1))
-{
-    Console.WriteLine(car.BrandId + " " +  car.Description);
-}
-
-
-
- Console.WriteLine("\n GetCarsByColorId : ");
-foreach (var car in carManager.GetCarsByColorId(1))
-{
-    Console.WriteLine( car.ColorId + " " +   car.Description);
-}
-
-
-Console.WriteLine("\n NameMinTwoCharacters : ");
-
-carManager.NameMinTwoCharacters(new Car
-{
-Description = "TOYOTA COROLLA"
-});
-
-
-Console.WriteLine("\n DailyPriceBigZero : ");
-
-carManager.DailyPriceBigZero(new Car
-{
-    DailyPrice = 1500,
-    Description = "AUDI A6"
-}) ;
