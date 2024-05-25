@@ -1,9 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
-using System.Collections.Generic;
 
 Console.WriteLine("Hello, World!");
 
@@ -60,8 +58,8 @@ static void CarTest()
 
     Console.WriteLine("\n Delete : ");
     //carManager.GetDeleteById(2013);
-    
-    
+
+
     Console.WriteLine("\n Update : ");
     carManager.GetUpdateById(new Car
     {
@@ -70,11 +68,35 @@ static void CarTest()
         Description = "AUDI A6"
 
     });
+
+
+    Console.WriteLine("\n Car detail : ");
+    foreach (var car in carManager.GetCarDetails())
+    {
+        Console.WriteLine(car.CarName + " " + car.ColorName + " " + car.BrandName);
+    }
 }
 
-CarManager carManager = new CarManager(new EfCarDal());
-Console.WriteLine("\n Car detail : ");
-foreach (var car in carManager.GetCarDetails())
+//BrandTest();
+
+static void BrandTest()
 {
-    Console.WriteLine(car.CarName+ " " + car.ColorName + " " + car.BrandName);
+    BrandManager brandManager = new BrandManager(new EfBrandDal());
+    brandManager.GetBrandAdd(new Brand
+    {
+        Name = "MERCEDES"
+    });
+}
+
+//ColoTest();
+
+static void ColoTest()
+{
+    ColorManager colorManager = new ColorManager(new EfColorDal());
+    //colorManager.GetColorAdd(new Color { Name = "Siyah" });
+
+    foreach (var color in colorManager.GetColorList())
+    {
+        Console.WriteLine(color.Name);
+    }
 }
