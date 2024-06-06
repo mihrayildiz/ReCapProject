@@ -11,7 +11,7 @@ static void CarTest()
 {
     CarManager carManager = new CarManager(new EfCarDal());
 
-    foreach (var car in carManager.GetAll())
+    foreach (var car in carManager.GetAll().Data)
     {
         Console.WriteLine(car.Description);
     }
@@ -19,13 +19,13 @@ static void CarTest()
 
 
     Console.WriteLine("\n GetById :");
-    Car carById = carManager.GetById(2);
+    Car carById = carManager.GetById(2).Data;
 
     Console.WriteLine(carById.Description);
 
 
     Console.WriteLine("\n GetCarsByBrandId : ");
-    foreach (var car in carManager.GetCarsByBrandId(1))
+    foreach (var car in carManager.GetCarsByBrandId(1).Data)
     {
         Console.WriteLine(car.BrandId + " " + car.Description);
     }
@@ -33,7 +33,7 @@ static void CarTest()
 
 
     Console.WriteLine("\n GetCarsByColorId : ");
-    foreach (var car in carManager.GetCarsByColorId(1))
+    foreach (var car in carManager.GetCarsByColorId(1).Data)
     {
         Console.WriteLine(car.ColorId + " " + car.Description);
     }
@@ -71,7 +71,7 @@ static void CarTest()
 
 
     Console.WriteLine("\n Car detail : ");
-    foreach (var car in carManager.GetCarDetails())
+    foreach (var car in carManager.GetCarDetails().Data)
     {
         Console.WriteLine(car.CarName + " " + car.ColorName + " " + car.BrandName);
     }
