@@ -95,8 +95,49 @@ static void ColoTest()
     ColorManager colorManager = new ColorManager(new EfColorDal());
     //colorManager.GetColorAdd(new Color { Name = "Siyah" });
 
-    foreach (var color in colorManager.GetColorList())
+    foreach (var color in colorManager.GetColorList().Data)
     {
         Console.WriteLine(color.Name);
     }
+}
+
+//CustomerTest();
+
+static void CustomerTest()
+{
+    CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+    var result = customerManager.Add(new Customer
+    {
+        UserId = "3",
+        CompanyName = "Adalet Bakanlığı",
+    });
+    Console.WriteLine(result.Message);
+
+
+    var customerList = customerManager.GetCustomerAll();
+    foreach (var customer in customerList.Data)
+    {
+        Console.WriteLine(customer.CompanyName);
+
+    }
+    Console.WriteLine(customerList.Message);
+}
+
+RentalTest();
+
+static void RentalTest()
+{
+    RentalManager rentalManager = new RentalManager(new EfRentalDal());
+    var result = rentalManager.AddRental(
+        new Rental
+        {
+            //Id=1,
+            CarId = 1,
+            CustomerId = "1",
+            RentDate = DateTime.Now,
+            ReturnDate = new DateTime(2024, 8, 28)
+
+        });
+    Console.WriteLine(result.Message);
 }

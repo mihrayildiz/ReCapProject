@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,4 +19,22 @@ public class RentalManager : IRentalService
     {
         _rentalDal = rentalDal;
     }
+
+    public IResult AddRental(Rental rental)
+    {
+        var result = _rentalDal.GetAll( r => r.CarId == rental.CarId).FirstOrDefault(r => r.ReturnDate == null); //benim kiralamak istediğim arabanın bir tane bile geri iade edilmemiş tarihi var mı ? 
+       
+        if (result != null) // eğer null değil yani bir tane bile data tutuyorsa kiralama yapılamaz.
+        {
+            return new ErrorResult(Messages.CarRentalNot);
+        }
+        else
+        {
+            _rentalDal.Add(rental);
+            return new SuccesResult(Messages.CarRental);
+        }
+
+        
+    }
 }
+

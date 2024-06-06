@@ -19,6 +19,11 @@ public static class Messages
     public static string GetColorList = "Colors Listed";
     public static string GetBrandAdd = "Brand Added";
     public static string GetBrandNotAdd = "Brand Not Added because brandname is not be tree characters";
-
+    public static string CustomerAdded = "Customer Added";
+    public static string GetCustomerAll = "Customer Listed";
+    public static string AddNotRental = "Rental not ";
+    public static string CarRentalNot = "Rental not ";
+    public static string CarRental = "Rental  ";
+  
 
 }

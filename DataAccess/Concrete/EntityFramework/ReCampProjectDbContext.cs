@@ -23,6 +23,16 @@ public class ReCampProjectDbContext :DbContext
     public DbSet<Rental> Rentals { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Customer> Customers { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Define the primary key for the Customer entity
+        modelBuilder.Entity<Customer>().HasKey(c => c.UserId);
+       
+    }
 }
+
 
 
