@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -20,14 +22,15 @@ public class ColorManager : IColorService
         _colorDal = colorDal;
     }
 
-    public void GetColorAdd(Color color)
+    public IResult GetColorAdd(Color color)
     {
         _colorDal.Add(color);
-        Console.WriteLine("Color Eklendi");
+        return new SuccesResult(Messages.ColorAdded);
+       
     }
 
-    public List<Color> GetColorList()
+    public IDataResult<List<Color>> GetColorList()
     {
-      return   _colorDal.GetAll();
+        return new SuccesDataResult<List<Color>>(_colorDal.GetAll(), Messages.GetColorList) ;
     }
 }

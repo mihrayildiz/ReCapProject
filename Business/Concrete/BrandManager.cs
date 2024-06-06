@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -19,16 +21,17 @@ public class BrandManager : IBrandService
     }
 
 
-    public void GetBrandAdd(Brand brand)
+    public IResult GetBrandAdd(Brand brand)
     {
         if (brand.Name.Length < 3)
         {
-            Console.WriteLine("Brand ismi üç karakterden az olamaz!!");
+            return new ErrorResult(Messages.GetBrandNotAdd);
+
         }
         else
         {
             _brandDal.Add(brand);
-            Console.WriteLine("Brand eklendi");
+            return new SuccesResult(Messages.GetBrandAdd);
         }
 
     }
