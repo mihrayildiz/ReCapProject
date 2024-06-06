@@ -14,6 +14,8 @@ public static class Messages
     public static string DailyPriceBigZero = "DailyPrice must be zero";
     public static string GetDeleteById = "Your selection has been deleted";
     public static string GetUpdateById = "Your selection has been updated";
+
     public static string CarsListed = "Cars Listed";
+
 
 }
