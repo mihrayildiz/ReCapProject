@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -19,13 +20,13 @@ public interface ICarService
 
     List<Car> GetCarsByColorId(int colorId);
 
-    void NameMinTwoCharacters(Car car);
+    IResult NameMinTwoCharacters(Car car);
 
-    void DailyPriceBigZero(Car car);
+    IResult DailyPriceBigZero(Car car);
 
-    void GetDeleteById (int id);
+    IResult GetDeleteById (int id);
 
-    void GetUpdateById(Car car);
+    IResult GetUpdateById(Car car);
 
     List<CarDetailDto> GetCarDetails();
 

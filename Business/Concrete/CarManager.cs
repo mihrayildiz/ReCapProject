@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -39,49 +41,52 @@ public class CarManager : ICarService
         return _cardal.GetAll(c => c.ColorId == colorId);   
     }
 
-    public void NameMinTwoCharacters(Car car)
+    public IResult NameMinTwoCharacters(Car car)
     {
         if (car.Description.Length >= 2) 
         {
             _cardal.Add(car);
-            Console.WriteLine("Yeni Car Eklendi.");
+            //Console.WriteLine("Yeni Car Eklendi."); magic strnig 
+            return new SuccesResult(Messages.CarAdded); // bu şekilde magis stringler engellendi.
 
         }
         else
         {
-            Console.WriteLine("Car description min iki karakter olmalıdır.");
+            //Console.WriteLine("Car description min iki karakter olmalıdır.");
+            return new ErrorResult(Messages.CarNotAdded);
            
            
         }
        // return;
     }
 
-    public void DailyPriceBigZero(Car car)
+    public IResult DailyPriceBigZero(Car car)
     {
         if (car.DailyPrice >0)
         {
             _cardal.Add(car);
-            Console.WriteLine("Yeni Car Eklendi.");
+            return new SuccesResult(Messages.CarAdded);
 
         }
         else
         {
-            Console.WriteLine("Car DailyPrice 0'dan büyük  olmalıdır.");
+            return new ErrorResult(Messages.DailyPriceBigZero);
            
 
         }
         //return;
     }
 
-    public void GetDeleteById(int id)
+    public IResult GetDeleteById(int id)
     {
 
         var deletedItem = _cardal.Get( c => c.Id == id);
         _cardal.Delete(deletedItem);
+        return new SuccesResult(Messages.GetDeleteById);
 
     }
 
-    public void GetUpdateById(Car car)
+    public IResult GetUpdateById(Car car)
     {
         var updatedItem = _cardal.Get(c =>c.Id == car.Id);
 
@@ -91,7 +96,7 @@ public class CarManager : ICarService
         updatedItem.ModelYear = car.ModelYear;
         updatedItem.BrandId = car.BrandId;
         _cardal.Update(updatedItem);
-       
+        return new SuccesResult(Messages.GetUpdateById);
 
         
     }
