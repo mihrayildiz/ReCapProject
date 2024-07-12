@@ -80,7 +80,7 @@ public class CarManager : ICarService
     public IResult GetDeleteById(int id)
     {
 
-        var deletedItem = _cardal.Get( c => c.Id == id);
+        var deletedItem = _cardal.Get( c => c.Id == id); //önce silinecek olan veri bulundu
         _cardal.Delete(deletedItem);
         return new SuccesResult(Messages.GetDeleteById);
 

@@ -136,7 +136,7 @@ static void RentalTest()
             CarId = 1,
             CustomerId = "1",
             RentDate = DateTime.Now,
-            ReturnDate = new DateTime(2024, 8, 28)
+          //  ReturnDate = new DateTime(2024, 8, 28)
 
         });
     Console.WriteLine(result.Message);

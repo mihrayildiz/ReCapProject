@@ -22,12 +22,15 @@ public class RentalManager : IRentalService
 
     public IResult AddRental(Rental rental)
     {
-        var result = _rentalDal.GetAll( r => r.CarId == rental.CarId).FirstOrDefault(r => r.ReturnDate == null); //benim kiralamak istediğim arabanın bir tane bile geri iade edilmemiş tarihi var mı ? 
-       
+        var result = _rentalDal.GetAll(r => r.CarId == rental.CarId).ToList()
+            .FirstOrDefault(r => r.ReturnDate == null);
+           
+
         if (result != null) // eğer null değil yani bir tane bile data tutuyorsa kiralama yapılamaz.
         {
             return new ErrorResult(Messages.CarRentalNot);
-        }
+            
+          }
         else
         {
             _rentalDal.Add(rental);
