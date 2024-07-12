@@ -56,7 +56,7 @@ namespace WepAPI.Controllers
 
 
         [HttpPost("getdeletebyid")]
-        public IActionResult GetDeleteById(int id)
+        public IActionResult Get(int id)
         {
             var result = _carService.GetDeleteById(id);
             

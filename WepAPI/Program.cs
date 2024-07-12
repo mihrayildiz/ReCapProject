@@ -12,6 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ICarService, CarManager>();
 builder.Services.AddSingleton<ICarDal, EfCarDal>();
 
+builder.Services.AddSingleton<IColorService, ColorManager>();
+builder.Services.AddSingleton<IColorDal, EfColorDal>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
