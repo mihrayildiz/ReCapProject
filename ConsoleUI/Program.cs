@@ -103,26 +103,26 @@ static void ColoTest()
 
 //CustomerTest();
 
-static void CustomerTest()
-{
-    CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+//static void CustomerTest()
+//{
+//    CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-    var result = customerManager.Add(new Customer
-    {
-        UserId = "3",
-        CompanyName = "Adalet Bakanlığı",
-    });
-    Console.WriteLine(result.Message);
+//    var result = customerManager.Add(new Customer
+//    {
+//        UserId = "3",
+//        CompanyName = "Adalet Bakanlığı",
+//    });
+//    Console.WriteLine(result.Message);
 
 
-    var customerList = customerManager.GetCustomerAll();
-    foreach (var customer in customerList.Data)
-    {
-        Console.WriteLine(customer.CompanyName);
+//    var customerList = customerManager.GetCustomerAll();
+//    foreach (var customer in customerList.Data)
+//    {
+//        Console.WriteLine(customer.CompanyName);
 
-    }
-    Console.WriteLine(customerList.Message);
-}
+//    }
+//    Console.WriteLine(customerList.Message);
+//}
 
 RentalTest();
 

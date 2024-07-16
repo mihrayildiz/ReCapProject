@@ -30,4 +30,29 @@ public  class CustomerManager : ICustomerService
     {
         return new SuccesDataResult<List<Customer>>(_customerDal.GetAll(), Messages.GetCustomerAll);
     }
+
+    public IResult Update(Customer customer)
+    {
+       var updatedItem = _customerDal.Get(c=>c.UserId == customer.UserId);
+       updatedItem.CompanyName = customer.CompanyName;
+        _customerDal.Update(updatedItem);       
+        return new SuccesResult("ok");
+    }
 }
+
+
+//{
+//    "data": [
+//        {
+//            "userId": "1",
+//            "companyName": "Lösev Vakfı"
+//        },
+//        {
+//    "userId": "2",
+//            "companyName": "Darüşşafaka"
+//        },
+//        {
+//    "userId": "3",
+//            "companyName": "Adalet Bakanlığı"
+//        }
+//    ],

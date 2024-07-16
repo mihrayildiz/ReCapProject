@@ -13,4 +13,8 @@ public interface ICustomerService
     IResult Add(Customer customer);
 
     IDataResult<List<Customer>> GetCustomerAll();
+
+    IResult Update(Customer customer);
+
+
 }
