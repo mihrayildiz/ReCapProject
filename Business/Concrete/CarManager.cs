@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -42,22 +44,31 @@ public class CarManager : ICarService
     }
 
     public IResult NameMinTwoCharacters(Car car)
-    {
-        if (car.Description.Length >= 2) 
-        {
-            _cardal.Add(car);
-            //Console.WriteLine("Yeni Car Eklendi."); magic strnig 
-            return new SuccesResult(Messages.CarAdded); // bu şekilde magis stringler engellendi.
 
-        }
-        else
-        {
-            //Console.WriteLine("Car description min iki karakter olmalıdır.");
-            return new ErrorResult(Messages.CarNotAdded);
-           
-           
-        }
-       // return;
+    {
+        ValidationTool.Validate(new CarValidator(), car);
+
+        _cardal.Add(car);
+         Console.WriteLine("Yeni Car Eklendi.");
+         return new SuccesResult(Messages.CarAdded);
+
+        //if (car.Description.Length >= 2)
+        //{
+        //    _cardal.Add(car);
+        //    //Console.WriteLine("Yeni Car Eklendi."); magic strnig 
+        //    return new SuccesResult(Messages.CarAdded); // bu şekilde magis stringler engellendi.
+
+        //}
+        //else
+        //{
+        //    //Console.WriteLine("Car description min iki karakter olmalıdır.");
+        //    return new ErrorResult(Messages.CarNotAdded);
+
+
+        //}
+        // return;
+
+        //burası artık yorumda çünkü validate kuralları ValidationTool dan geliyor. 
     }
 
     public IResult DailyPriceBigZero(Car car)
