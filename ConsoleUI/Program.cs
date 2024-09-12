@@ -9,7 +9,7 @@ Console.WriteLine("Hello, World!");
 
 static void CarTest()
 {
-    CarManager carManager = new CarManager(new EfCarDal());
+    CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 
     foreach (var car in carManager.GetAll().Data)
     {

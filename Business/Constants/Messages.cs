@@ -24,6 +24,6 @@ public static class Messages
     public static string AddNotRental = "Rental not ";
     public static string CarRentalNot = "Rental not ";
     public static string CarRental = "Rental  ";
-  
-
+    internal static string BrandNameExixts = "Bu isimde brand bulunuyor ekleme yapılamaz";
+    internal static string BrandListed = "Markalar listelendi";
 }

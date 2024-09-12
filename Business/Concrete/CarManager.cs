@@ -1,7 +1,9 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,10 +19,12 @@ namespace Business.Concrete;
 public class CarManager : ICarService
 {
    private readonly  ICarDal _cardal;
+private IBrandService _brandService;
 
-    public CarManager(ICarDal cardal)
+    public CarManager(ICarDal cardal, IBrandService brandService)
     {
         _cardal = cardal;
+        _brandService = brandService;
     }
 
     public IDataResult<List<Car>> GetAll()
@@ -43,10 +47,12 @@ public class CarManager : ICarService
         return   new SuccesDataResult<List<Car>>( _cardal.GetAll(c => c.ColorId == colorId));   
     }
 
+
+      [ValidationAspect(typeof(CarValidator))]
     public IResult NameMinTwoCharacters(Car car)
 
     {
-        ValidationTool.Validate(new CarValidator(), car);
+       
 
         _cardal.Add(car);
          Console.WriteLine("Yeni Car Eklendi.");
@@ -73,7 +79,7 @@ public class CarManager : ICarService
 
     public IResult DailyPriceBigZero(Car car)
     {
-        if (car.DailyPrice >0)
+        if (car.DailyPrice >0) //AOP
         {
             _cardal.Add(car);
             return new SuccesResult(Messages.CarAdded);
@@ -115,6 +121,33 @@ public class CarManager : ICarService
     public IDataResult<List<CarDetailDto>> GetCarDetails()
     {
        return  new SuccesDataResult<List<CarDetailDto>>( _cardal.GetCarDetails());
+    }
+
+    public IResult Add(Car car)
+    {
+        IResult result = BusinessRules.Run(CheckIfCounfOfBrand());
+
+        if(result != null)
+        {
+            return result;
+        }
+
+        _cardal.Add(car);
+       return  new SuccesResult(Messages.CarAdded);
+    }
+
+    //business code
+    //galeride ondan çeşitten fazla araç var ise yeni araç ekleme
+    private IResult CheckIfCounfOfBrand()
+    {
+        var result = _brandService.GetAll().Data;
+
+        if (result.Count > 10)
+        {
+            return new ErrorResult();
+        }
+
+        return new SuccesResult();   
     }
 }
 

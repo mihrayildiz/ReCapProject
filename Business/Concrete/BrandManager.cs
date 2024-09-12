@@ -1,11 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,10 +23,22 @@ public class BrandManager : IBrandService
         _brandDal = brandDal;
     }
 
+    public IDataResult<List<Brand>> GetAll()
+    {
+        return new SuccesDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandListed);
+    }
 
+    //aynı isimde ekleme yapamz
     public IResult GetBrandAdd(Brand brand)
     {
-        if (brand.Name.Length < 3)
+
+        IResult result = BusinessRules.Run(CheckIfSameNameOfBrandName(brand.Name));
+        if(result != null)
+        {
+            return result;
+        }
+
+        if (brand.Name.Length < 3)  //AOP
         {
             return new ErrorResult(Messages.GetBrandNotAdd);
 
@@ -34,6 +49,18 @@ public class BrandManager : IBrandService
             return new SuccesResult(Messages.GetBrandAdd);
         }
 
+    }
+
+    private IResult CheckIfSameNameOfBrandName  (string name)
+    {
+        var result = _brandDal.GetAll(b => b.Name == name).Any();
+        
+        if(result)
+        {
+            return new ErrorResult(Messages.BrandNameExixts);
+        }
+
+        return new SuccesResult();
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -22,22 +23,37 @@ public class RentalManager : IRentalService
 
     public IResult AddRental(Rental rental)
     {
+      IResult result  =  BusinessRules.Run(CheckIfSuitableOfCarForRental(rental));
+
+        if (result != null)
+        {
+            return result;
+        }
+
+
+        _rentalDal.Add(rental);
+        return new SuccesResult(Messages.CarRental);
+
+
+
+    }
+
+
+    //businss code
+    private IResult CheckIfSuitableOfCarForRental(Rental rental)
+    {
         var result = _rentalDal.GetAll(r => r.CarId == rental.CarId).ToList()
-            .FirstOrDefault(r => r.ReturnDate == null);
-           
+           .FirstOrDefault(r => r.ReturnDate == null);
 
         if (result != null) // eğer null değil yani bir tane bile data tutuyorsa kiralama yapılamaz.
         {
+
             return new ErrorResult(Messages.CarRentalNot);
-            
-          }
-        else
-        {
-            _rentalDal.Add(rental);
-            return new SuccesResult(Messages.CarRental);
         }
 
-        
+        return new SuccesResult();
+
     }
+
 }
 
