@@ -17,5 +17,10 @@ public class Car : IEntity
     public int ModelYear { get; set; }
     public int DailyPrice { get; set; }
     public string Description { get; set; }
-   
+
+
+
+    // Bir arabanın birden fazla resmi olabilir
+    public List<CarImage> Images { get; set; } = new List<CarImage>();
+
 }
