@@ -13,13 +13,13 @@ public class CarImage : IEntity
     public int CarId { get; set; }
     public string ImagePath { get; set; }
    
-    public DateTime Date { get; private  set; }  
+    public DateTime Date { get;   set; }  
     public Car Car{ get; set; }
 
-    public CarImage()
-    {
-        Date = DateTime.Now;
-    }
+    //public CarImage()
+    //{
+    //    Date = DateTime.Now;
+    //}
 }
 
 
