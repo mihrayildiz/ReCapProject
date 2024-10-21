@@ -17,8 +17,10 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(IFormFile file, CarImage carImage)
+        public IActionResult Add([FromForm] IFormFile file, [FromForm] int carId)
         {
+            CarImage carImage = new CarImage{ CarId = carId };
+
             var result = _carImageService.Add(file, carImage);
             if (result.Success)
             {
@@ -28,9 +30,11 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(IFormFile file, CarImage carIMage)
+        public IActionResult Update([FromForm] IFormFile file, [FromForm] int id)
         {
-            var result = _carImageService.Update( file,  carIMage);
+            CarImage oldImage = _carImageService.GetById(id).Data;  //hangi resim update edilecek o resmi buldum.
+
+            var result = _carImageService.Update(file, oldImage);
             if (result.Success)
             {
                 return Ok(result);
@@ -39,9 +43,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete( CarImage carIMage)
+        public IActionResult Delete( CarImage carImage)
         {
-            var result = _carImageService.Delete( carIMage);
+            var result = _carImageService.Delete( carImage);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,3 +54,7 @@ namespace WepAPI.Controllers
         }
     }
 }
+
+
+//file bir form-data olduğu için : [] yapısı kullanıldı.
+//IFormFile bir form-data parçasıdır ve bu nedenle başına [FromForm] koyulması gerekir.

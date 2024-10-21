@@ -45,7 +45,7 @@ public class CarImageManager : ICarImageService
         carImage.Date = DateTime.Now;
 
 
-        _carImageDal.Add(carImage); //ekleme
+        _carImageDal.Add(carImage); //database ekleme
         return new SuccesResult();
 
     }
@@ -77,5 +77,10 @@ public class CarImageManager : ICarImageService
             return new SuccesResult();
         }
 
+    }
+
+    public IDataResult<CarImage> GetById(int id)
+    {
+        return new SuccesDataResult<CarImage>(_carImageDal.Get(c=>c.Id == id));
     }
 }

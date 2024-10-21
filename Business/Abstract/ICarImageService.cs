@@ -19,6 +19,7 @@ public  interface ICarImageService
 
     IResult Update(IFormFile file, CarImage carIMage);
 
-  
+    IDataResult<CarImage> GetById(int id);
+
 
 }
