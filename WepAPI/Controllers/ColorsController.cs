@@ -2,7 +2,7 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using System.Reflection.Metadata.Ecma335;
 
 
