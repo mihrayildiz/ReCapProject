@@ -9,4 +9,5 @@ namespace DataAccess.Abstract;
 
 public interface IUserDal : IEntityRepository<User>
 {
+    List<OperationClaim> GetClaims(User user); //kullanıcının claim bilgileri getirildi.
 }

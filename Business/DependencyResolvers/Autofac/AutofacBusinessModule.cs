@@ -5,6 +5,7 @@ using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Helper.FileHelper;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using System;
@@ -28,9 +29,17 @@ public class AutofacBusinessModule : Module
         builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
         builder.RegisterType<EfCarDal>().As<ICarDal>().SingleInstance();
 
+        //CarImage
         builder.RegisterType<CarImageManager>().As<ICarImageService>();
         builder.RegisterType<EfCarImageDal>().As<ICarImageDal>();
         builder.RegisterType<FileHelper>().As<IFileHelper>();
+
+        ///User
+        builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+        builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
+
+        builder.RegisterType<AuthManager>().As<IAuthService>();
+        builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();

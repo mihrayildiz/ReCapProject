@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +17,15 @@ namespace WepAPI.Controllers
             _userService = userService;
         }
 
-        
+
+        [HttpPost("add")]
+        public IActionResult AddUser(User user)
+        {
+             _userService.Add(user);
+            return Ok();
+
+            
+        }
+
     }
 }
