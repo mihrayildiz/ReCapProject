@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -28,6 +29,7 @@ public class BrandManager : IBrandService
         return new SuccesDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandListed);
     }
 
+    [SecuredOperation("admin,product.add")]
     //aynı isimde ekleme yapamz
     public IResult GetBrandAdd(Brand brand)
     {

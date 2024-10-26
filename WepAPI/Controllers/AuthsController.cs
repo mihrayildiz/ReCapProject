@@ -43,7 +43,7 @@ namespace WepAPI.Controllers
         public IActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userToCheck = _authService.UserExists(userForRegisterDto.Email);
-            if (userToCheck != null)
+            if (!userToCheck.Success)
             {
                 return BadRequest(userToCheck.Message);
             }

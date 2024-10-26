@@ -5,22 +5,40 @@ using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Core.Utilities.Security.Encryption;
+using Microsoft.IdentityModel.Tokens;
+using Core.Utilities.Security.JWT;
+using Core.Utilities.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
 builder.Services.AddControllers();
 
-//builder.Services.AddSingleton<ICarService, CarManager>();
-//builder.Services.AddSingleton<ICarDal, EfCarDal>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+ServiceTool.Create(builder.Services);
 
-//builder.Services.AddSingleton<IColorService, ColorManager>();
-//builder.Services.AddSingleton<IColorDal, EfColorDal>();
+var configuration = builder.Configuration;
+var tokenOptions = configuration.GetSection("TokenOperation").Get<TokenOptions>();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidIssuer = tokenOptions.Issuer,
+            ValidAudience = tokenOptions.Audience,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+        };
+    });
 
-//builder.Services.AddSingleton<ICustomerService, CustomerManager>();
-//builder.Services.AddSingleton<ICustomerDal, EfCustomerDal>();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -45,6 +63,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+ 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

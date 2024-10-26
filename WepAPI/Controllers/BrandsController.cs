@@ -16,7 +16,7 @@ namespace WepAPI.Controllers
             _brandService = brandService;
         }
 
-        [HttpGet("add")]
+        [HttpPost("add")]
 
         public IActionResult Add(Brand brand)
         {
