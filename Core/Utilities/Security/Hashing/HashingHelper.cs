@@ -24,6 +24,8 @@ public class HashingHelper
         using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
         {
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+
             for (int i = 0; i < computedHash.Length; i++)
             {
                 if (computedHash[i] != passwordHash[i])
@@ -43,3 +45,7 @@ passwordSalt, aynı olan şifrelerin bile farklı hash'lerle sonuçlanmasını s
 bu da benzersiz bir hash elde edilmesini sağlar.
 HMAC yöntemi, passwordSalt'ı kullanarak hash işleminin yaygın saldırılara karşı dirençli olmasını sağlar.
 HMACSHA512 algoritması, passwordSalt'ı bir anahtar olarak kullanarak şifrenin hash'ini oluşturur. Bu, passwordSalt'ın sonuç hash'ini etkilemesini ve bu hash'in sadece bu belirli salt'a özel olmasını sağlar.*/
+
+
+//passwordHash = passwordHash.Take(64).ToArray();
+//computedHash = computedHash.Take(64).ToArray();

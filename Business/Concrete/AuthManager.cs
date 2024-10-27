@@ -46,7 +46,7 @@ public class AuthManager : IAuthService
             return new ErrorResult(Messages.UserAlreadyExists);
         }
 
-        return new SuccesResult(Messages.UserNotFound);
+        return new SuccesResult();
     }
 
     public IDataResult<User> Login(UserForLoginDto userForLogin)
@@ -88,7 +88,7 @@ public class AuthManager : IAuthService
         };
 
         _userService.Add(user); //user eklendi
-        return new SuccesDataResult<User>(Messages.UserRegistered);
+        return new SuccesDataResult<User>(user,Messages.UserRegistered);
     }
 
 

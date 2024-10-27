@@ -13,7 +13,7 @@ namespace WepAPI.Controllers
     [ApiController]
     public class AuthsController : ControllerBase
     {
-        IAuthService _authService;
+       private  IAuthService _authService;
 
         public AuthsController(IAuthService authService)
         {
