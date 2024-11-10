@@ -17,3 +17,12 @@ public static class ServiceTool
         return services;
     }
 }
+
+
+
+/* IServiceCollection türünden services parametresini alarak, 
+ * uygulamanın tüm servislerinin yapılandırmasını tamamlayıp bir ServiceProvider(servis sağlayıcı) 
+ * oluşturmak ve onu statik olarak saklamaktır.
+    Bu sayede, diğer sınıflar ServiceTool üzerinden ServiceProvider'a erişebilir.
+ServiceTool sınıfı üzerinden servislere erişebilir.
+IServiceCollection arayüzü .NET’in temel bir parçasıdır ve Microsoft.Extensions.DependencyInjection ad alanında bulunur. */

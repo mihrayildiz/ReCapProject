@@ -10,6 +10,8 @@ using Core.Utilities.Security.Encryption;
 using Microsoft.IdentityModel.Tokens;
 using Core.Utilities.Security.JWT;
 using Core.Utilities.IoC;
+using Core.Extensions;
+using Core.DependencyResolvers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-ServiceTool.Create(builder.Services);
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+//ServiceTool.Create(builder.Services);
 
 var configuration = builder.Configuration;
 var tokenOptions = configuration.GetSection("TokenOperation").Get<TokenOptions>();
@@ -39,6 +41,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule()});
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -70,3 +73,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+//IHttpContextAccessor nesnesini dependency injection (ba??ml?l?k enjeksiyonu) olarak sa?lamak ve daha sonra bu servisi
+//statik bir ServiceTool s?n?f? arac?l???yla kullanmakt?r.

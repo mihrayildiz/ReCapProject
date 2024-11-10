@@ -29,7 +29,7 @@ public class BrandManager : IBrandService
         return new SuccesDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandListed);
     }
 
-    [SecuredOperation("admin,product.add")]
+    [SecuredOperation("admin,brand.add")]
     //aynı isimde ekleme yapamz
     public IResult GetBrandAdd(Brand brand)
     {
