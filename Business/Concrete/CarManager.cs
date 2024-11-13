@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -27,6 +30,8 @@ public class CarManager : ICarService
         _brandService = brandService;
     }
 
+
+    [CacheAspect]
     public IDataResult<List<Car>> GetAll()
     {
        return  new SuccesDataResult< List<Car >>( _cardal.GetAll(), Messages.CarsListed);
@@ -123,6 +128,9 @@ public class CarManager : ICarService
        return  new SuccesDataResult<List<CarDetailDto>>( _cardal.GetCarDetails());
     }
 
+    [PerformanceAspect(5)]
+    [CacheAspect]
+    [CacheRemoveAspect("ICarService.Get")]
     public IResult Add(Car car)
     {
         IResult result = BusinessRules.Run(CheckIfCounfOfBrand());
@@ -148,6 +156,14 @@ public class CarManager : ICarService
         }
 
         return new SuccesResult();   
+    }
+
+    [TransactionScopeAspect]
+    public IResult AddTransactionalTest(Car car)
+    {
+        _cardal.Update(car);
+        _cardal.Add(car);
+        return new SuccesResult(Messages.CarAdded);
     }
 }
 

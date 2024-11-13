@@ -21,3 +21,5 @@ public static class ServiceCollectionExtensions
         return ServiceTool.Create(serviceCollection);
     }
 }
+
+//her yeni coremodule eklendiğinde arraye eklenir.

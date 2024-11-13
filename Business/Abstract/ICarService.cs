@@ -31,5 +31,8 @@ public interface ICarService
     IDataResult<List<CarDetailDto>> GetCarDetails();
 
     IResult Add(Car car);
+    IResult AddTransactionalTest(Car car);
+
+
 
 }
