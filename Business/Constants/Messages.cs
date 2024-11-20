@@ -26,6 +26,7 @@ public static class Messages
     public static string CarRental = "Rental  ";
     internal static string BrandNameExixts = "Bu isimde brand bulunuyor ekleme yapılamaz";
     internal static string BrandListed = "Markalar listelendi";
+    internal static string GetAllRental = "Rental listelendi";
     public static string DirectoryNotFoundException = "Görsel bulunamaı";
 
 

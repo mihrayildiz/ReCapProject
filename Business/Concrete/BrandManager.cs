@@ -53,6 +53,8 @@ public class BrandManager : IBrandService
 
     }
 
+   
+
     private IResult CheckIfSameNameOfBrandName  (string name)
     {
         var result = _brandDal.GetAll(b => b.Name == name).Any();

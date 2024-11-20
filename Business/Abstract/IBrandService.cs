@@ -14,4 +14,6 @@ public interface IBrandService
     IResult GetBrandAdd(Brand brand);
 
     IDataResult<List<Brand>> GetAll();
+
+   
 }

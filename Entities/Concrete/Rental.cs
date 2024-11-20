@@ -11,7 +11,7 @@ public class Rental : IEntity
 {
     public int Id { get; set; }
     public int CarId { get; set; }
-    public string CustomerId { get; set; }
+    public int CustomerId { get; set; }
 
     public DateTime RentDate { get; set; }  // (Kiralama Tarihi)
     public DateTime? ReturnDate { get; set; }  // (Teslim Tarihi)

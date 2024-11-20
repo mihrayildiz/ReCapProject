@@ -26,6 +26,19 @@ namespace WepAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        } 
+        
+        
+        [HttpGet("getall")]
+        public IActionResult Get()
+        {
+            var result = _rentalService.GetAllRental();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
     }

@@ -29,6 +29,19 @@ public class AutofacBusinessModule : Module
         builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
         builder.RegisterType<EfCarDal>().As<ICarDal>().SingleInstance();
 
+        //Customer
+        builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
+        builder.RegisterType<EfCustomerDal>().As<ICustomerDal>().SingleInstance();
+
+
+        //Rental
+        builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
+        builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
+
+        //Color
+        builder.RegisterType<ColorManager>().As<IColorService>().SingleInstance();
+        builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
+
         //CarImage
         builder.RegisterType<CarImageManager>().As<ICarImageService>();
         builder.RegisterType<EfCarImageDal>().As<ICarImageDal>();

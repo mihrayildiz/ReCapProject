@@ -124,20 +124,20 @@ static void ColoTest()
 //    Console.WriteLine(customerList.Message);
 //}
 
-RentalTest();
+//RentalTest();
 
-static void RentalTest()
-{
-    RentalManager rentalManager = new RentalManager(new EfRentalDal());
-    var result = rentalManager.AddRental(
-        new Rental
-        {
-            //Id=1,
-            CarId = 1,
-            CustomerId = "1",
-            RentDate = DateTime.Now,
-          //  ReturnDate = new DateTime(2024, 8, 28)
+//static void RentalTest()
+//{
+//    RentalManager rentalManager = new RentalManager(new EfRentalDal());
+//    var result = rentalManager.AddRental(
+//        new Rental
+//        {
+//            //Id=1,
+//            CarId = 1,
+//            CustomerId = "1",
+//            RentDate = DateTime.Now,
+//          //  ReturnDate = new DateTime(2024, 8, 28)
 
-        });
-    Console.WriteLine(result.Message);
-}
+//        });
+//    Console.WriteLine(result.Message);
+//}

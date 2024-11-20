@@ -27,5 +27,19 @@ namespace WepAPI.Controllers
             }
             return BadRequest();
         }
+
+
+        [HttpGet("getall")]
+        public IActionResult Get()
+        {
+            var result = _brandService.GetAll();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
     }
 }

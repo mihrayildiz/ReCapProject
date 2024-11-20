@@ -16,14 +16,16 @@ using Core.DependencyResolvers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+var configuration = builder.Configuration;
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors();
 
 //builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 //ServiceTool.Create(builder.Services);
 
-var configuration = builder.Configuration;
+
 var tokenOptions = configuration.GetSection("TokenOperation").Get<TokenOptions>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -64,6 +66,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 app.UseHttpsRedirection();
 
  

@@ -4,6 +4,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ public class RentalManager : IRentalService
 
 
 
+    }
+
+    public IDataResult<List<RentalsDto>> GetAllRental()
+    {
+        return new SuccesDataResult<List<RentalsDto>>(_rentalDal.GetRentals(), Messages.GetAllRental);
     }
 
 
