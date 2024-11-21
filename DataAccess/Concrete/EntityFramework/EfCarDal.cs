@@ -25,7 +25,7 @@ public class EfCarDal : EfEntityRepositoryBase<Car, ReCampProjectDbContext>, ICa
                          on c.ColorId equals cl.Id
                          select new CarDetailDto
                          {
-                             CarName = c.Description,
+                             CarName = c.CarName,
                              BrandName = b.Name,
                              ColorName = cl.Name,
                              DailyPrice = c.DailyPrice

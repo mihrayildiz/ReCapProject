@@ -70,11 +70,11 @@ static void CarTest()
     });
 
 
-    Console.WriteLine("\n Car detail : ");
-    foreach (var car in carManager.GetCarDetails().Data)
-    {
-        Console.WriteLine(car.CarName + " " + car.ColorName + " " + car.BrandName);
-    }
+//    Console.WriteLine("\n Car detail : ");
+//    foreach (var car in carManager.GetCarDetails().Data)
+//    {
+//        Console.WriteLine(car.CarName + " " + car.ColorName + " " + car.BrandName);
+//    }
 }
 
 //BrandTest();

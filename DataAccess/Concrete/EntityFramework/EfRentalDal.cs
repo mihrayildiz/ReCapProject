@@ -21,7 +21,7 @@ public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCampProjectDbContext
             
             var result = from br in context.Brands
                          join cr in context.Cars
-                         on br.Id equals cr.BrandId  // Cars tablosunda BrandId olduğunu varsayıyoruz
+                         on br.Id equals cr.BrandId  
                          join rt in context.Rentals
                          on cr.Id equals rt.CarId
                          join cstm in context.Customers
