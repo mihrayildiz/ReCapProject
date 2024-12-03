@@ -165,6 +165,8 @@ public class CarManager : ICarService
         _cardal.Add(car);
         return new SuccesResult(Messages.CarAdded);
     }
+
+   
 }
 
 
