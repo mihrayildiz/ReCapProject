@@ -19,6 +19,8 @@ public interface ICarService
     IDataResult< List<Car>> GetCarsByBrandId(int brandId); 
     
     IDataResult< List<Car>> GetCarsByColorId(int colorId);
+  
+    
 
     IResult NameMinTwoCharacters(Car car);
 
@@ -29,6 +31,8 @@ public interface ICarService
     IResult GetUpdateById(Car car);
 
     IDataResult<List<CarDetailDto>> GetCarDetails();
+    IDataResult<List<CarDetailDto>> GetCarsByColor(int colorid);
+
 
     IResult Add(Car car);
     IResult AddTransactionalTest(Car car);

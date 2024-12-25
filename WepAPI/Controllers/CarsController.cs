@@ -54,6 +54,20 @@ namespace WepAPI.Controllers
             return BadRequest(result);
         }
 
+        /*Anasayfada branname ve colorıd nin name olarak gelmesi gerekşyrdu bu yüzden
+         dtodan nesnesi ile eşleştirildi.*/
+        [HttpGet("getcarsdtobycolorid")]
+        public IActionResult GetCarsDtoByColorId(int colorId)
+        {
+            var result = _carService.GetCarsByColor(colorId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getcardetails")]
         public IActionResult GetCarDetails()
         {

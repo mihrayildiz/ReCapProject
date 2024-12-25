@@ -13,6 +13,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,6 +129,8 @@ public class CarManager : ICarService
        return  new SuccesDataResult<List<CarDetailDto>>( _cardal.GetCarDetails());
     }
 
+ 
+
     [PerformanceAspect(5)]
     [CacheAspect]
     [CacheRemoveAspect("ICarService.Get")]
@@ -166,7 +169,10 @@ public class CarManager : ICarService
         return new SuccesResult(Messages.CarAdded);
     }
 
-   
+    public IDataResult<List<CarDetailDto>> GetCarsByColor(int colorid)
+    {
+        return new SuccesDataResult<List<CarDetailDto>>(_cardal.GetCarsByColor(colorid));
+    }
 }
 
 

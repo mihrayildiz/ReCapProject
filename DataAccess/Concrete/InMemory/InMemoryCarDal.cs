@@ -62,7 +62,17 @@ public class InMemoryCarDal : ICarDal
         return car;
     }
 
+    public List<CarDetailDto> GetCarDetails(Func<object, bool> value)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<CarDetailDto> GetCarDetails()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<CarDetailDto> GetCarsByColor(int colorid)
     {
         throw new NotImplementedException();
     }

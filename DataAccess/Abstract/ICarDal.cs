@@ -12,6 +12,8 @@ public interface ICarDal : IEntityRepository<Car>
 {
     List<CarDetailDto> GetCarDetails();
 
+    List<CarDetailDto> GetCarsByColor(int colorid);
+
 
 }
 
